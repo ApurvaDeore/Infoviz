@@ -1,0 +1,92 @@
+<html>
+<head>
+    <title> Apurva Deore- Assignment 1 </title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+</head>
+<body>
+    <table style="width: 850px" cellspacing="5" cellpadding="5">
+    <tbody>
+    <tr>
+    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+    <td style="vertical-align: top;">Apurva Deore</td>
+    </tr>
+    
+    <tr>
+    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+    <td style="vertical-align: top;">
+    <p><a href="https://www.rsa.ie/Documents/NCT/Make%20Model%20data%202016.pdf" target="_blank" rel="noopener">Road Safety Authority Data</a>.</p>
+    <p>This data set contains the data that is provided by Road Safety Authority (RSA) related to vehicle makes and models that were tested by the National Car Testing Service in 2016</p>
+    </td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+    <td style="vertical-align: top;">How many Emissions were produced in all the years that were tested by NCT?</td>
+    </tr>
+    </tbody>
+    </table>
+    <hr />
+  <div id="vis" class="container"></div>
+  <script type="text/javascript">
+    var yourVlSpec =  {
+
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+
+  "data": {"url": "https://raw.githubusercontent.com/ApurvaDeore/Infoviz/master/Make%20Model%20Data%202016.csv"},
+  
+  "title": "Emissions recorded Per Year",
+
+  "description": "Line chart showing the rate of emissions for every year",
+
+  "height":500,
+  "width": 850,
+      
+        "mark": "line",
+        "encoding": {
+          
+          "x": {
+            "timeUnit": "year",
+            "type": "ordinal",
+            "field": "YearOfBirth",          
+            "axis": {"title": "Year", "labelAngle": -45}
+          },
+
+          "y": {
+            "aggregate": "sum",
+            "type": "quantitative", 
+            "field": "Emmissions",
+            "axis": {"title": "Sum of Emissions"}            
+          },
+          "color": {
+            "value": "#000000"
+          }
+          
+} 
+}
+
+        vegaEmbed("#vis", yourVlSpec);
+  </script>
+    <hr />
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">This line chart shows the total emissions that emitted due to all the vehicles in consideration. Every x,y point corresponds to the total number of emissions for a particular year wherein the x-axis represents the years. </td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;">This visualization brings to our notice that the rate of emissions was very low or negligible until the year 1990. This could be because not many people used cars back until the 90s and there was a sudden surge in the number of cars used and hence the amount of increase in emissions was observed in the further years which peaked in the year 2003 and then followed a decreasing trend until the year 2016.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Design considerations</strong></td>
+<td style="vertical-align: top;">A line chart is the best way to show changes that occur during a long term and find out the patterns associated with them. Hence I have used a line chart for this visualization inorder to show the trends that were witnessed for the emissions per year. It shows how the rate of emissions has increased and decreased over the years.</td>
+</tr>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+<td style="vertical-align: top;">All of the available data has been considered.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

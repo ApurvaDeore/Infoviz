@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title> Apurva Deore- Assignment 1 </title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+</head>
+<body>
+    <table style="width: 850px" cellspacing="5" cellpadding="5">
+    <tbody>
+    <tr>
+    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+    <td style="vertical-align: top;">Apurva Deore</td>
+    </tr>
+    
+    <tr>
+    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+    <td style="vertical-align: top;">
+    <p><a href="https://www.rsa.ie/Documents/NCT/Make%20Model%20data%202016.pdf" target="_blank" rel="noopener">Road Safety Authority Data</a>.</p>
+    <p>This data set contains the data that is provided by Road Safety Authority (RSA) related to vehicle makes and models that were tested by the National Car Testing Service in 2016</p>
+    </td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+    <td style="vertical-align: top;">How do the total number of tests conducted relate to the most tested/manufactured vehicle?</td>
+    </tr>
+    </tbody>
+    </table>
+    <hr />
+  <div id="vis" class="container"></div>
+  <script type="text/javascript">
+    var yourVlSpec =  {
+
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+
+  "data": {"url": "https://raw.githubusercontent.com/ApurvaDeore/Infoviz/master/Make%20Model%20Data%202016.csv"},
+  
+  "title": "Total Tests conducted for different vehicles",
+
+  "description": "Bar chart showing the number of tests for different vehicles manufactured",
+  
+  "transform":[{"filter": "datum.Total > 300"}],
+
+  "height": {"step": 18},
+   "width":800,
+  "mark": "bar",
+  
+  "encoding": {
+    "y": {
+      "type": "nominal",
+      "field": "VehicleMake",
+      "sort": "-x",
+      "axis": {"title": "Vehicle Manufacturer "}
+    },
+
+    "x": {
+      "aggregate": "sum",
+      "type": "quantitative",
+      "field": "Total",
+      "axis": {"title": "Total Tests"}
+    }
+  }
+}
+
+
+        vegaEmbed("#vis", yourVlSpec);
+  </script>
+    <hr />
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">This bar chart show the number of tests performed for different vehicles. Each bar on y-axis represents one distinct Vehicle, whereas the x-axis consists of the number of tests performed.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;">It is pretty evident from the visualization that the most number of tests were performed for Toyota. Which also makes us realize that Toyota was the most manufactured and tested car along these years, followed by Volkswagen, Ford and so on.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Design considerations</strong></td>
+<td style="vertical-align: top;">I have used a bar chart as it is a very effective way to show two entities and display the required insights in a simpler way. It also helps us view key values at one glance itself. For example, we can tell the maximum tests were performed for Toyota whereas the least number of tests were performed for Jaguar. So it makes it easy to compare the number of tests for any two vehicleMakes in consideration.</td>
+</tr>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+<td style="vertical-align: top;">Only those Vehicles for which the number of tests performed were greater than 300 are shown.</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

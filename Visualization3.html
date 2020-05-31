@@ -1,0 +1,124 @@
+<html>
+<head>
+    <title> Apurva Deore- Assignment 1 </title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+</head>
+<body>
+    <table style="width: 850px" cellspacing="5" cellpadding="5">
+    <tbody>
+    <tr>
+    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+    <td style="vertical-align: top;">Apurva Deore</td>
+    </tr>
+    
+    <tr>
+    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+    <td style="vertical-align: top;">
+    <p><a href="https://www.rsa.ie/Documents/NCT/Make%20Model%20data%202016.pdf" target="_blank" rel="noopener">Road Safety Authority Data</a>.</p>
+    <p>This data set contains the data that is provided by Road Safety Authority (RSA) related to vehicle makes and models that were tested by the National Car Testing Service in 2016</p>
+    </td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+    <td style="vertical-align: top;">Out of all the tests performed by NCT, for all years of car manufactured, how many of them passed?</td>
+    </tr>
+    </tbody>
+    </table>
+    <hr />
+  <div id="vis" class="container"></div>
+  <script type="text/javascript">
+    var yourVlSpec =  {
+
+  
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+
+  "data": {"url": "https://raw.githubusercontent.com/ApurvaDeore/Infoviz/master/Make%20Model%20Data%202016.csv"},
+  
+  "title": "Passed Tests out of the Total tests conducted based on the cars year of manufacture (1990-2016)",
+
+  "description": "Visualization showing how many tests were conducted and how many of them were positive",
+  
+
+  "height":500,
+  "width": 800,
+
+        "transform": [{"filter": {"timeUnit": "year", "field": "YearOfBirth", "range": [1990, 2016] }}],
+  
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "y": {
+            "aggregate": "sum", 
+            "type": "quantitative",
+            "field": "Total", 
+            "axis": {"title": "Total tests(Blue) and Passed Tests(Green) "}
+            
+          },
+
+          "x": {
+            "timeUnit": "year",
+            "type": "ordinal",
+            "field": "YearOfBirth"
+          },
+            "color": {
+            "value": "#0000A0"
+          
+        }
+        }
+      },
+
+      {
+        "mark": "bar",
+        "encoding": {
+          "y": {
+            "aggregate": "sum",
+            "type": "quantitative", 
+            "field": "PASS"
+          },
+
+          "x": {
+            "timeUnit": "year",
+            "type": "ordinal",
+            "field": "YearOfBirth",
+            "axis": {"title": "Year"}
+          },
+
+          "color": {
+            "value": "#008000"
+          }
+          
+}
+        }
+      
+    ]
+  
+}
+
+        vegaEmbed("#vis", yourVlSpec);
+  </script>
+    <hr />
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">This bar chart shows the total tests that were conducted by NCT for every year along with the passed tests. Every bar corresponds to the total number of tests performed for a particular year wherein the x-axis represents the years and number of tests are represented on y-axis.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;">This visualizatiom shows that the tests performed in the early 90s were very less but this number rose starting from 95 and saw a peaked value for the year 2005, followed by 2008 and so on. Using this visualization we can compare the number of total tests performed. However, the data is a bit skewed and not uniform in the number of total tests so comparing the passed tests between any two years seems difficult, although ratios could be taken into consideration. We also see that the tests performed in the end were almost negligible (in the years 2014-15).</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Design considerations</strong></td>
+<td style="vertical-align: top;">I first visualized this using a line chart for both the entities(Total tests and passed ones), although it does show the peak points that a line chart shows, but it's difficult to compare the total tests with the passed one for a particular year. So I visualized it with a bar chat. A bar chart is the best way to show comparison between various competing values. Like we could compare the tests between various years easily with a bar chart. I used blue colour to represent the total tests conducted whereas Green colour to show the ones that have passed, as green is best used to represent positive/pass results.</td>
+</tr>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+<td style="vertical-align: top;">Only the data for the years in the range [1990, 2016] has been taken into consideration</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
